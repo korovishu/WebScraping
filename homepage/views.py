@@ -3,6 +3,7 @@ import re
 from urllib.request import urlopen
 from bs4 import BeautifulSoup as soup
 from .forms import HandleForm
+import requests
 # Create your views here.
 def home(request):
     if request.method == 'POST':
@@ -23,38 +24,29 @@ def stalk(request, handle):
 
 def statistics(request, handle):
     friend = handle
-    p_link = "https://codeforces.com/submissions/"
+    p_link = "https://codeforces.com/api/user.status?handle="
+    r = requests.get(p_link + friend)
+    data = r.json()
     accepted = 0
     wrong_answer = 0
     time_exceed = 0
     runtime_error = 0
     hacked = 0
     compilation_error = 0
-    for i in range(1, 6):
-        page_url = p_link + friend + "/page/" + str(i)
-        u_client = urlopen(page_url)
-        page_soup = soup(u_client.read(), "html.parser")
-        u_client.close()
-        containers = page_soup.findAll("div", {"class": "datatable"})
-        table = containers[0]
-        for rows in table.findAll("tr", {"data-submission-id": re.compile(r'\b')}):
-            verdict = rows.findAll("td", {"waiting": "false"})
-            verdict = verdict[0]
-            verdict = verdict.findAll("span")[0]
-            if len(verdict.findAll("span")) > 0:
-                verdict = verdict.findAll("span")[0].text
-                if verdict == "Accepted":
-                    accepted += 1
-                elif verdict == "Hacked":
-                    hacked += 1
-                elif re.compile('Wrong answer').match(verdict):
-                    wrong_answer += 1
-                elif re.compile('Runtime error').match(verdict):
-                    runtime_error += 1
-                else:
-                    time_exceed += 1
-            else:
-                compilation_error += 1
+    for rows in data['result']:
+        verdict = rows['verdict']
+        if verdict == "OK":
+            accepted += 1
+        elif verdict == "HACKED":
+            hacked += 1
+        elif verdict == "WRONG_ANSWER":
+            wrong_answer += 1
+        elif verdict == "TIME_LIMIT_EXCEEDED":
+            time_exceed += 1
+        elif verdict == "RUNTIME_ERROR":
+            runtime_error += 1
+        else:
+            compilation_error += 1
     context = {
         'handle': handle,
         'accepted': accepted,
