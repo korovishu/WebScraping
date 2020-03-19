@@ -6,6 +6,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', include('homepage.urls')),
     path('stalk/<str:handle>', home_views.stalk, name='stalk'),
-    path('statistics/<str:handle>', home_views.statistics, name='statistics'),
+    path('submission_statistics/<str:handle>', home_views.submission_statistics, name='submission-statistics'),
     path('contest_statistics/<str:handle>', home_views.contest_statistics, name='contest-statistics')
 ]

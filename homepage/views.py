@@ -22,7 +22,7 @@ def stalk(request, handle):
     }
     return render(request, 'homepage/stalk.html', context)
 
-def statistics(request, handle):
+def submission_statistics(request, handle):
     friend = handle
     p_link = "https://codeforces.com/api/user.status?handle="
     r = requests.get(p_link + friend)
@@ -56,7 +56,7 @@ def statistics(request, handle):
         'time_exceed': time_exceed,
         'compilation_error': compilation_error
     }
-    return render(request, "homepage/statistics.html", context)
+    return render(request, "homepage/submission_statistics.html", context)
 
 def contest_statistics(request, handle):
     page_url = "https://codeforces.com/api/user.rating?handle=" + handle
