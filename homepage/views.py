@@ -87,7 +87,7 @@ def submission_statistics(request, handle):
         for i in range(1, 8):
             context['day'+str(key)+str(i)] = dic[i]
     print(context)
-    return render(request, "homepage/statistics.html", context)
+    return render(request, "homepage/submission_statistics.html", context)
 
 
 def contest_statistics(request, handle):
