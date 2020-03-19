@@ -3,6 +3,7 @@ import re
 from urllib.request import urlopen
 from bs4 import BeautifulSoup as soup
 from .forms import HandleForm
+import requests
 # Create your views here.
 def home(request):
     if request.method == 'POST':
@@ -30,7 +31,7 @@ def statistics(request, handle):
     runtime_error = 0
     hacked = 0
     compilation_error = 0
-    for i in range(1, 6):
+    for i in range(1, 2):
         page_url = p_link + friend + "/page/" + str(i)
         u_client = urlopen(page_url)
         page_soup = soup(u_client.read(), "html.parser")
@@ -65,3 +66,20 @@ def statistics(request, handle):
         'compilation_error': compilation_error
     }
     return render(request, "homepage/statistics.html", context)
+
+def contest_statistics(request, handle):
+    page_url = "https://codeforces.com/api/user.rating?handle=" + handle
+    r = requests.get(page_url)
+    data = r.json()
+    contests = []
+    ranks = []
+    for i in data['result']:
+        contests.append(i['contestId'])
+        ranks.append(i['rank'])
+    context = {
+        'handle': handle,
+        'contests': contests,
+        'ranks': ranks
+    }
+
+    return render(request, "homepage/contest_statistics.html", context)
