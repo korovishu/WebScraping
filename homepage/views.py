@@ -56,6 +56,7 @@ def statistics(request, handle):
             else:
                 compilation_error += 1
     context = {
+        'handle': handle,
         'accepted': accepted,
         'hacked': hacked,
         'runtime_error': runtime_error,
