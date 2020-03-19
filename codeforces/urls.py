@@ -6,4 +6,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', include('homepage.urls')),
     path('stalk/<str:handle>', home_views.stalk, name='stalk'),
+    path('statistics/<str:handle>', home_views.statistics, name='statistics')
 ]
