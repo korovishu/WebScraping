@@ -5,6 +5,12 @@
       <change beforePath="$PROJECT_DIR$/.idea/codeforces.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeforces.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codeforces/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/codeforces/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codeforces/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/codeforces/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homepage/templates/homepage/contest_statistics.html" beforeDir="false" afterPath="$PROJECT_DIR$/homepage/templates/homepage/contest_statistics.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homepage/templates/homepage/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/homepage/templates/homepage/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homepage/templates/homepage/stalk.html" beforeDir="false" afterPath="$PROJECT_DIR$/homepage/templates/homepage/stalk.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homepage/templates/homepage/submission_statistics.html" beforeDir="false" afterPath="$PROJECT_DIR$/homepage/templates/homepage/submission_statistics.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

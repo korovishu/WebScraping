@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+<head>
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Favicon-->
+	<link rel="shortcut icon" href="fav.png">
+	<!-- Author Meta -->
+	<meta name="author" content="CodePixar">
+	<!-- Meta Description -->
+	<meta name="description" content="">
+	<!-- Meta Keyword -->
+	<meta name="keywords" content="">
+	<!-- meta character set -->
+	<meta charset="UTF-8">
+	<!-- Site Title -->
+	<title>WebCrawler</title>
+	<link href="https://fonts.googleapis.com/css?family=Poppins:100,300,500" rel="stylesheet">
+		<!--
+		CSS
+		============================================= -->
+		<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/linearicons.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/nice-select.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/magnific-popup.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+
+	</head>
+	<body class="dup-body">
+		<div class="dup-body-wrap">
+			<!-- Start Header Area -->
+			<header class="default-header">
+				<div class="header-wrap">
+					<div class="header-top d-flex justify-content-between align-items-center">
+						<div class="logo">
+							<a href="/home/"><img src="{% static 'logo.png' %}" alt=""></a>
+						</div>
+						<div class="main-menubar d-flex align-items-center">
+							<nav class="hide">
+								<a href="/home/">Home</a>
+							</nav>
+							<div class="menu-bar"><span class="lnr lnr-menu"></span></div>
+						</div>
+					</div>
+				</div>
+			</header>
+		<!-- End Header Area -->
+		<section class="banner-area relative">
+            <div class="overlay overlay-bg"></div>
+            <div class="container">
+                <div class="row fullscreen align-items-center justify-content-between">
+                    {% block content %}{% endblock content %}
+                </div>
+            </div>
+        </section>
+		<!-- End Banner Area -->
+		<script src="{% static 'js/vendor/jquery-2.2.4.min.js' %}"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+		<script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+		<script src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
+		<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+		<script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+		<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+		<script src="{% static 'js/main.js' %}"></script>
+	</body>
+</html>

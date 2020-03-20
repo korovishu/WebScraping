@@ -1,26 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-</head>
-<body>
-<h1>Hello Stalker</h1>
-<h3>Welcome to our website where we help you to track progress of your friends/rivals on codeforces</h3>
-<br><br>
-<p>
-<h4>We can do the following for you:</h4>
-<ul>
-    <li>Extract Solution</li>
-    <li>Submission Statistics</li>
-</ul>
-</p>
-<form method="post" target="_blank">
-     {% csrf_token %}
-     {{ form }}
-    <input type="submit" value="GO">
-</form>
-</body>
-</html>
+{% extends "homepage/index.html" %}
+{% load static %}
+{% block content %}
+
+<div class="col-lg-6 col-md-7 col-sm-8">
+    <div class="banner-content">
+        <h1>Web Scraping <br> Codeforces Website</h1>
+        <p>Welcome to our website where we help you to track progress of your friends/rivals on codeforces.</p>
+        <form method="post" target="_blank">
+             {% csrf_token %}
+             {{ form }}
+            <input type="submit" class="primary-btn" value="GO"><span class="lnr lnr-arrow-right"></span>
+        </form>
+    </div>
+</div>
+<div class="col-lg-5 col-md-5 col-sm-4">
+    <img src="{% static 'banner.png' %}" alt="" class="img-fluid">
+</div>
+{% endblock content %}
