@@ -4,6 +4,7 @@ import re
 from urllib.request import urlopen
 from bs4 import BeautifulSoup as soup
 from .forms import HandleForm
+import simplejson
 import requests
 # Create your views here.
 def home(request):
@@ -35,22 +36,16 @@ def submission_statistics(request, handle):
     hacked = 0
     compilation_error = 0
     submissions = {}
-    today = date.today()
+    li = []
     for rows in data['result']:
         time = rows['creationTimeSeconds']
-        s_day = datetime.fromtimestamp(time).date()
-        days = (today - s_day).days
-        week = days // 7
-        day = days % 7 + 1
-        if week <= 3:
-            if submissions.get(week) is None:
-                submissions[week] = {day: 1}
-            else:
-                dic = submissions[week]
-                if dic.get(day) is None:
-                    dic[day] = 1
-                else:
-                    dic[day] += 1
+        p_date = datetime.fromtimestamp(time).date()
+        p_date = p_date.strftime('%Y%m%d')
+        print(p_date)
+        if submissions.get(p_date) is None:
+            submissions[p_date] = 1
+        else:
+            submissions[p_date] += 1
         if rows.get('verdict') is not None:
             verdict = rows['verdict']
             if verdict == "OK":
@@ -65,13 +60,7 @@ def submission_statistics(request, handle):
                 runtime_error += 1
             else:
                 compilation_error += 1
-
-
-    for key in submissions:
-        dic = submissions[key]
-        for i in range(1, 8):
-            if dic.get(i) is None:
-                dic[i] = 0
+        json_list = simplejson.dumps(submissions)
 
     context = {
         'handle': handle,
@@ -81,12 +70,9 @@ def submission_statistics(request, handle):
         'wrong_answer': wrong_answer,
         'time_exceed': time_exceed,
         'compilation_error': compilation_error,
+        'submissions': submissions,
+        'json_list': json_list
     }
-    for key in submissions:
-        dic = submissions[key]
-        for i in range(1, 8):
-            context['day'+str(key)+str(i)] = dic[i]
-    print(context)
     return render(request, "homepage/submission_statistics.html", context)
 
 

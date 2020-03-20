@@ -1,10 +1,10 @@
 {% extends "homepage/index.html" %}
 {% block content %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
-      <div class="container" style="position: relative; height:700px; width:700px">
+      <div class="container" style="position: relative; height:600px; width:600px">
             <canvas id="myChart"></canvas>
       </div>
-      <div class="container" id="chart2"style="position: relative;" ></div>
+    <div id="calendar_basic" style="width: 1000px; height: 350px;"></div>
 <script>
     let myChart = document.getElementById('myChart').getContext('2d');
     // Global Options
@@ -70,4 +70,60 @@
       }
     });
   </script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+      google.charts.load("current", {packages:["calendar"]});
+      google.charts.setOnLoadCallback(drawChart);
+
+   function drawChart() {
+       var dic = {{json_list|safe}};
+       // console.log(dic);
+       var list = [];
+       for(var keys in dic)
+       {
+           var e = parseInt(keys);
+           // console.log(e);
+           var year,dat,month;
+           day = e%100;
+           e-=day;
+           e/=100;
+           month = e%100;
+           e-=month;
+           e/=100;
+           year = e;
+           // console.log(year, month, day);
+           list.push([new Date(year,month,day),dic[keys]]);
+       }
+       console.log(list);
+       var dataTable = new google.visualization.DataTable();
+       dataTable.addColumn({ type: 'date', id: 'Date' });
+       dataTable.addColumn({ type: 'number', id: 'Won/Loss' });
+       dataTable.addRows(list);
+
+       var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
+
+       var options = {
+         title: "Submission Heat Map",
+         height: 350,
+         calendar: {
+            cellColor: {
+            stroke: '#76a7fa',
+            strokeOpacity: 0.5,
+            strokeWidth: 1,
+         },
+         noDataPattern: {
+           backgroundColor: '#fa6653',
+           color: '#861b7d'
+         }
+    }
+
+       };
+
+       chart.draw(dataTable, options);
+   }
+    </script>
+
+
+
+
 {% endblock content %}
